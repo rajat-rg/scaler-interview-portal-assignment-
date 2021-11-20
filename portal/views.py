@@ -39,3 +39,17 @@ def schedule(request):
             messages.error(request, msg)
     return redirect('home')
     
+def upcoming(request):
+    interview = Interview.objects.all()
+    print(interview)
+    for i in interview:
+        print(i)
+    context={"interviews":interview}
+    print(context)
+    return render(request, 'upcoming.html', context)
+
+def edit(request):
+    pass
+
+def delete(request):
+    pass
