@@ -1,34 +1,30 @@
 {% extends 'base.html' %}
 {% block body %}
-<div class="container my-3">
+<div class="container my-3 " >
     
-    <form>
+    <form action="schedule" method="post" class="top">
+    {% csrf_token %}
         <div class="row form-group">
             <label for="interviewerEmail">Interviewer Email address</label>
-            <input type="email" class=" form-control" id="interviewerEmail" aria-describedby="emailHelp" placeholder="Enter interviewer email">
+            <input type="email" class=" form-control" name="interviewerEmail" id="interviewerEmail" aria-describedby="emailHelp" placeholder="Enter interviewer email" required>
             
             <label for="candidateEmail">Candidate Email address</label>
-            <input type="email" class=" form-control" id="candidateEmail" aria-describedby="emailHelp" placeholder="Enter candidate email">
+            <input type="email" class=" form-control" name="candidateEmail" id="candidateEmail" aria-describedby="emailHelp" placeholder="Enter candidate email" required>
             
             <label for="Date">Date:&nbsp </label>
-            <input type="date" class="form-control " id="date"  placeholder="Enter interview Date">
+            <input type="date" class="form-control " name="date" id="date"  placeholder="Enter interview Date" required>
         </div>
     <div class="row form-group">
         
         <label for="startTime">Start Time:&nbsp </label>
-        <input type="time" class="form-control col" id="startTime"  placeholder="Enter Start time">
+        <input type="time" class="form-control col" name="startTime" id="startTime"  placeholder="Enter Start time" required>
         
         <label for="endTime"> &nbspEnd Time:&nbsp </label>
-        <input type="time" class="form-control col" id="endTime"  placeholder="Enter end time">
+        <input type="time" class="form-control col" name="endTime" id="endTime"  placeholder="Enter end time" required>
     </div>
+
     
-    
-    {% comment %}     
-    <label for="candidateEmail">Candidate Email address</label>
-    <input type="email" class="form-control" id="candidateEmail" aria-describedby="emailHelp" placeholder="Enter email">
-    {% endcomment %}
-    
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Schedule Interview</button>
 </form>
 </div>
 
