@@ -39,10 +39,10 @@ def schedule(request,slug=""):
             messages.success(request, msg)
 
         if(len(i1) != 0):
-            msg = interviewer.name, 'has a interview scheduled at', schedule_date, '', startTimer
+            msg = interviewer.name+ ' has a interview scheduled on '+ schedule_date+ ' at '+ startTimer
             messages.error(request, msg)
         if(len(i2) != 0):
-            msg = candidate.name, 'has a interview scheduled at', schedule_date, " ", startTimer
+            msg = candidate.name+ ' has a interview scheduled on '+ schedule_date+ " at "+ startTimer
             messages.error(request, msg)
     return redirect('home')
     
