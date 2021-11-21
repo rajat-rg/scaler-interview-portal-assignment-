@@ -3,10 +3,10 @@ from portal.models import Interviewer, Candidate, Interview
 from django.contrib import messages
 # Create your views here.
 def home(request):
-    # messages.success(request,"hello")
     return render(request,'home.html')
 
-def schedule(request):
+def schedule(request,slug=""):
+    print(slug)
     if request.method == 'POST':
         interviewerEmail = request.POST.get('interviewerEmail')
         candidateEmail = request.POST.get('candidateEmail')
@@ -25,8 +25,15 @@ def schedule(request):
         i1 = Interview.objects.filter(interviewer = interviewer, date = schedule_date, startTime= startTimer)
         i2 = Interview.objects.filter(Candidate = candidate, date = schedule_date, startTime= startTimer)
         if len(i1)==0 and len(i2)==0:
-            interview = Interview(interviewer=interviewer, Candidate=candidate, date=schedule_date, startTime = startTimer,endTime = endTimer)
-
+            if slug == "":
+                interview = Interview(interviewer=interviewer, Candidate=candidate, date=schedule_date, startTime = startTimer,endTime = endTimer)
+            else:
+                interview = Interview.objects.get(sno=slug)
+                interview.interviewer = interviewer
+                interview.candidate = candidate
+                interview.date = schedule_date
+                interview.startTime = startTimer
+                interview.endTime = endTimer
             interview.save()
             msg= "interview scheduled for "+candidate.name+" X "+interviewer.name+" \n on "+schedule_date + " at "+ startTimer
             messages.success(request, msg)
@@ -41,15 +48,23 @@ def schedule(request):
     
 def upcoming(request):
     interview = Interview.objects.all()
-    print(interview)
-    for i in interview:
-        print(i)
     context={"interviews":interview}
-    print(context)
     return render(request, 'upcoming.html', context)
 
-def edit(request):
-    pass
+def edit(request,slug):
+    inter = Interview.objects.get(sno=slug)
+    context = {'interview':inter}
+    return render(request, 'edit.html',context)
 
-def delete(request):
-    pass
+def confirmEdit(request,slug):
+    slug = str(slug)
+    schedule(request, slug)
+    return redirect("home")
+
+
+def delete(request, slug):
+    inter = Interview.objects.get(sno=slug)
+    inter.delete()
+    msg = "interview id "+slug+"deleted successfully."
+    messages.success(request, msg)
+    return redirect("home")

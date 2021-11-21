@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<div class="container my-3 " >
+    
+    <form action="/confirmEdit/{{interview.sno}}" method="post" class="top">
+    {% csrf_token %}
+        <div class="row form-group">
+            
+            <input type="text" hidden="true" class="form-control" value={{interview.sno}}>
+
+            <label for="interviewerEmail">Interviewer Email address</label>
+            <input type="email" class=" form-control" name="interviewerEmail" id="interviewerEmail" value={{interview.interviewer.email}} aria-describedby="emailHelp"  placeholder="Enter interviewer email" required>
+            
+            <label for="candidateEmail">Candidate Email address</label>
+            <input type="email" class=" form-control" name="candidateEmail" id="candidateEmail"  value={{interview.Candidate.email}} aria-describedby="emailHelp" placeholder="Enter candidate email" required>
+            
+            <label for="Date">Date:&nbsp </label>
+            <input type="date" class="form-control " name="date" id="date" value={{interview.date}}  placeholder="Enter interview Date" required>
+        </div>
+    <div class="row form-group">
+        
+        <label for="startTime">Start Time:&nbsp </label>
+        <input type="time" class="form-control col" name="startTime" id="startTime" value={{interview.startTime}}  placeholder="Enter Start time" required>
+        
+        <label for="endTime"> &nbspEnd Time:&nbsp </label>
+        <input type="time" class="form-control col" name="endTime" id="endTime" value={{interview.endTime}}  placeholder="Enter end time" required>
+    </div>
+
+    
+    <button type="submit" class="btn btn-primary">Edit Interview</button>
+</form>
+</div>
+
+
+
+{% endblock body %}

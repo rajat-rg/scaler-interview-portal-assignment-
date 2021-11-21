@@ -27,7 +27,7 @@ class Interview(models.Model):
     endTime = models.TimeField()
 
     def __str__(self):
-        return self.Candidate.name + ' X ' + self.interviewer.name
+        return self.Candidate.name + ' X ' + self.interviewer.name +' on '+ str(self.date) +" at "+str(self.startTime)
 
 
         # admin
