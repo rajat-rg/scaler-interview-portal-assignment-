@@ -13,6 +13,7 @@
               <th scope="col">Date</th>
               <th scope="col">Start Time</th>
               <th scope="col">End time</th>
+              <th scope="col">Interview Link</th>
               <th scope="col">Edit</th>
               <th scope="col">Delete</th>
             </tr>
@@ -26,6 +27,7 @@
               <td>{{interview.date}}</td>
               <td>{{interview.startTime}}</td>
               <td>{{interview.endTime}}</td>
+              <td><a href="/open/{{interview.link}}">{{interview.link}}</a></td>
               <td><a href="/edit/{{interview.sno}}">Edit</a></td>
               <td><a href="/delete/{{interview.sno}}">Delete</a></td>
             </tr>

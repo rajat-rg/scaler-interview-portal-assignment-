@@ -25,7 +25,7 @@ class Interview(models.Model):
     date = models.DateField()
     startTime = models.TimeField()
     endTime = models.TimeField()
-
+    link = models.CharField(max_length=60)
     def __str__(self):
         return self.Candidate.name + ' X ' + self.interviewer.name +' on '+ str(self.date) +" at "+str(self.startTime)
 
