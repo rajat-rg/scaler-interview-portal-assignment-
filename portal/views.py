@@ -92,5 +92,12 @@ def delete(request, slug):
     messages.success(request, msg)
     return redirect("upcoming")
 
-def open(request):
-    pass
+def open(request, slug, slug2):
+    inter = Interview.objects.get(sno = slug, link = slug2)
+    if slug2 == inter.Candidate.email:
+
+        contents = {"interview":inter}
+        return render(request, "open.html",contents)
+    else:
+        messages.success(request, "Not authorized to open this link.")
+        return redirect("upcoming")

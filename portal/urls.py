@@ -9,5 +9,5 @@ urlpatterns = [
     path('edit/<str:slug>', views.edit, name='edit'),
     path('confirmEdit/<str:slug>', views.confirmEdit, name='confirmEdit'),
     path('delete/<str:slug>', views.delete, name='delete'),
-    path('open/<str:slug>', views.open, name='open'),
+    path('open/<str:slug>/<str:slug2>', views.open, name='open'),
 ]
